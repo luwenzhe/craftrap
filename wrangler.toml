@@ -1,0 +1,19 @@
+name = "ai-image-generator"
+type = "webpack"
+account_id = ""
+workers_dev = true
+
+[site]
+bucket = "./out"
+include = ["**/*"]
+exclude = ["node_modules/*"]
+
+[env.production]
+vars = { }
+
+[env.development]
+vars = { }
+
+[build]
+command = "npm run build"
+cwd = "." 
