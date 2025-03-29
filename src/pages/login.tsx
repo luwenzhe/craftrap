@@ -68,7 +68,7 @@ const LoginPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen bg-gradient-to-b from-indigo-900 to-black text-white">
+      <main className="min-h-screen bg-white text-gray-900">
         <header className="container mx-auto py-6 px-4 flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
@@ -77,17 +77,17 @@ const LoginPage = () => {
             <h1 className="text-2xl font-bold">{translations.header}</h1>
           </div>
           <nav className="flex items-center space-x-6">
-            <Link href="/features" className="hover:text-indigo-300">
+            <Link href="/features" className="hover:text-blue-600">
               {translations.features}
             </Link>
-            <Link href="/faq" className="hover:text-indigo-300">
+            <Link href="/faq" className="hover:text-blue-600">
               {translations.faq}
             </Link>
-            <Link href="/pricing" className="hover:text-indigo-300">
+            <Link href="/pricing" className="hover:text-blue-600">
               {translations.pricing}
             </Link>
             <select 
-              className="bg-transparent border border-indigo-600 rounded p-1"
+              className="bg-transparent border border-gray-300 rounded p-1"
               value={language}
               onChange={(e) => setLanguage(e.target.value as 'en' | 'zh')}
             >
@@ -97,31 +97,31 @@ const LoginPage = () => {
           </nav>
         </header>
 
-        <div className="container mx-auto py-16 px-4 flex justify-center">
-          <div className="w-full max-w-md">
-            <div className="bg-indigo-800 bg-opacity-30 p-8 rounded-lg shadow-lg">
-              <h1 className="text-3xl font-bold text-center mb-2">
+        <div className="container mx-auto px-4 py-12">
+          <div className="w-full max-w-md mx-auto">
+            <div className="bg-white border border-gray-200 p-8 rounded-lg shadow-lg">
+              <h1 className="text-3xl font-bold text-center mb-2 text-gray-900">
                 {translations.welcomeBack}
               </h1>
-              <p className="text-center text-indigo-200 mb-8">
+              <p className="text-center text-gray-600 mb-8">
                 {translations.loginSubtitle}
               </p>
               
               {error && (
-                <div className="bg-red-500 bg-opacity-20 border border-red-400 text-red-100 px-4 py-3 rounded mb-4">
+                <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded mb-4">
                   {error}
                 </div>
               )}
               
               <form onSubmit={handleSubmit}>
                 <div className="mb-6">
-                  <label className="block text-sm font-medium mb-2" htmlFor="email">
+                  <label className="block text-sm font-medium mb-2 text-gray-700" htmlFor="email">
                     Email
                   </label>
                   <input 
                     id="email"
                     type="email" 
-                    className="w-full bg-indigo-900 bg-opacity-50 border border-indigo-700 rounded p-3 text-white" 
+                    className="w-full bg-white border border-gray-300 rounded p-3 text-gray-900" 
                     placeholder={translations.emailPlaceholder}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -131,17 +131,17 @@ const LoginPage = () => {
                 
                 <div className="mb-6">
                   <div className="flex items-center justify-between mb-2">
-                    <label className="block text-sm font-medium" htmlFor="password">
+                    <label className="block text-sm font-medium text-gray-700" htmlFor="password">
                       Password
                     </label>
-                    <Link href="/forgot-password" className="text-sm text-indigo-300 hover:underline">
+                    <Link href="/forgot-password" className="text-sm text-blue-600 hover:underline">
                       {translations.forgotPassword}
                     </Link>
                   </div>
                   <input 
                     id="password"
                     type="password" 
-                    className="w-full bg-indigo-900 bg-opacity-50 border border-indigo-700 rounded p-3 text-white" 
+                    className="w-full bg-white border border-gray-300 rounded p-3 text-gray-900" 
                     placeholder={translations.passwordPlaceholder}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -151,7 +151,7 @@ const LoginPage = () => {
                 
                 <button 
                   type="submit"
-                  className="w-full bg-gradient-to-r from-pink-500 to-indigo-600 hover:from-pink-600 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-lg"
+                  className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold py-3 px-4 rounded-lg"
                   disabled={isLoading}
                 >
                   {isLoading ? translations.loginLoading : translations.loginButton}
@@ -159,9 +159,9 @@ const LoginPage = () => {
               </form>
               
               <div className="mt-8 text-center">
-                <p className="text-indigo-200">
+                <p className="text-gray-600">
                   {translations.noAccount}{' '}
-                  <Link href="/signup" className="text-indigo-300 hover:underline">
+                  <Link href="/signup" className="text-blue-600 hover:underline">
                     {translations.signUp}
                   </Link>
                 </p>
@@ -170,22 +170,22 @@ const LoginPage = () => {
               <div className="mt-8">
                 <div className="relative">
                   <div className="absolute inset-0 flex items-center">
-                    <div className="w-full border-t border-indigo-600"></div>
+                    <div className="w-full border-t border-gray-300"></div>
                   </div>
                   <div className="relative flex justify-center text-sm">
-                    <span className="px-2 bg-indigo-800 bg-opacity-30 text-indigo-300">
+                    <span className="px-2 bg-white text-gray-500">
                       {translations.or}
                     </span>
                   </div>
                 </div>
                 
                 <div className="mt-6 space-y-4">
-                  <button className="w-full flex items-center justify-center py-3 px-4 border border-indigo-600 rounded-lg hover:bg-indigo-800 hover:bg-opacity-50">
+                  <button className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50">
                     <img src="/google-icon.png" alt="Google" className="h-5 w-5 mr-2" />
                     {translations.continueWithGoogle}
                   </button>
                   
-                  <button className="w-full flex items-center justify-center py-3 px-4 border border-indigo-600 rounded-lg hover:bg-indigo-800 hover:bg-opacity-50">
+                  <button className="w-full flex items-center justify-center py-3 px-4 border border-gray-300 rounded-lg hover:bg-gray-50">
                     <img src="/facebook-icon.png" alt="Facebook" className="h-5 w-5 mr-2" />
                     {translations.continueWithFacebook}
                   </button>
@@ -195,8 +195,8 @@ const LoginPage = () => {
           </div>
         </div>
 
-        <footer className="bg-indigo-900 bg-opacity-50 py-6">
-          <div className="container mx-auto px-4 text-center">
+        <footer className="bg-gray-50 py-6">
+          <div className="container mx-auto px-4 text-center text-gray-600">
             <p>
               © 2025 • {language === 'en' ? 'AI Image Generator' : 'AI 图像生成器'}. 
               {language === 'en' ? ' All rights reserved.' : ' 保留所有权利。'}

@@ -16,7 +16,7 @@ export type PricingPlan = {
 type PricingPlansProps = {
   plans: PricingPlan[];
   title: string;
-  locale?: 'en' | 'zh';
+  locale?: 'en' | 'zh' | 'ja' | 'ko' | 'ar';
 };
 
 const PricingPlans: React.FC<PricingPlansProps> = ({ plans, title, locale = 'en' }) => {

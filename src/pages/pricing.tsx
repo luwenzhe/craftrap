@@ -1,123 +1,66 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import PricingPlans, { PricingPlan } from '../components/PricingPlans';
+import PricingPlans from '../components/PricingPlans';
+import { useLanguage } from '../context/LanguageContext';
 
 const PricingPage = () => {
-  const englishPlans: PricingPlan[] = [
+  const { t, language, setLanguage } = useLanguage();
+
+  const plans = [
     {
       id: 'free',
-      name: 'Free',
+      name: language === 'en' ? 'Free' : '免费版',
       price: '0',
-      currency: '$',
-      period: 'forever',
+      currency: language === 'en' ? '$' : '¥',
+      period: language === 'en' ? 'Forever' : '永久免费',
       features: [
-        '5 images per day',
-        'Standard quality',
-        'Basic styles',
-        'Square aspect ratio only',
-        'No login required'
+        language === 'en' ? '15 images per day' : '每天15张图片',
+        language === 'en' ? 'Basic styles' : '基础风格',
+        language === 'en' ? 'Standard quality' : '标准质量',
+        language === 'en' ? 'Community support' : '社区支持'
       ],
-      buttonText: 'Get Started Free',
-      buttonLink: '/'
+      buttonText: language === 'en' ? 'Get Started' : '开始使用',
+      buttonLink: '/signup',
+      isPopular: false
     },
     {
       id: 'pro',
-      name: 'Pro',
-      price: '9.99',
-      currency: '$',
-      period: 'per month',
+      name: language === 'en' ? 'Pro' : '专业版',
+      price: language === 'en' ? '9.99' : '68',
+      currency: language === 'en' ? '$' : '¥',
+      period: language === 'en' ? 'per month' : '每月',
       features: [
-        '100 images per day',
-        'High quality',
-        'All styles',
-        'All aspect ratios',
-        'Priority generation',
-        'Save favorites'
+        language === 'en' ? '100 images per day' : '每天100张图片',
+        language === 'en' ? 'All styles' : '所有风格',
+        language === 'en' ? 'High quality' : '高质量',
+        language === 'en' ? 'Priority support' : '优先支持',
+        language === 'en' ? 'No watermarks' : '无水印'
       ],
-      isPopular: true,
-      buttonText: 'Upgrade to Pro',
-      buttonLink: '/signup?plan=pro'
+      buttonText: language === 'en' ? 'Subscribe' : '订阅',
+      buttonLink: '/signup?plan=pro',
+      isPopular: true
     },
     {
       id: 'enterprise',
-      name: 'Enterprise',
-      price: '29.99',
-      currency: '$',
-      period: 'per month',
+      name: language === 'en' ? 'Enterprise' : '企业版',
+      price: language === 'en' ? '49.99' : '328',
+      currency: language === 'en' ? '$' : '¥',
+      period: language === 'en' ? 'per month' : '每月',
       features: [
-        'Unlimited images',
-        'Maximum quality',
-        'All styles + custom styles',
-        'All aspect ratios',
-        'API access',
-        'Dedicated support',
-        'Team collaboration'
+        language === 'en' ? 'Unlimited images' : '无限图片',
+        language === 'en' ? 'All styles' : '所有风格',
+        language === 'en' ? 'Maximum quality' : '最高质量',
+        language === 'en' ? 'Dedicated support' : '专属支持',
+        language === 'en' ? 'API access' : 'API访问',
+        language === 'en' ? 'Commercial usage' : '商业使用授权'
       ],
-      buttonText: 'Contact Sales',
-      buttonLink: '/contact'
+      buttonText: language === 'en' ? 'Contact Sales' : '联系销售',
+      buttonLink: '/contact',
+      isPopular: false
     }
   ];
 
-  const chinesePlans: PricingPlan[] = [
-    {
-      id: 'free',
-      name: '免费',
-      price: '0',
-      currency: '¥',
-      period: '永久',
-      features: [
-        '每天 5 张图像',
-        '标准质量',
-        '基本风格',
-        '仅方形宽高比',
-        '无需登录'
-      ],
-      buttonText: '免费开始使用',
-      buttonLink: '/'
-    },
-    {
-      id: 'pro',
-      name: '专业版',
-      price: '68',
-      currency: '¥',
-      period: '每月',
-      features: [
-        '每天 100 张图像',
-        '高质量',
-        '所有风格',
-        '所有宽高比',
-        '优先生成',
-        '保存收藏'
-      ],
-      isPopular: true,
-      buttonText: '升级至专业版',
-      buttonLink: '/signup?plan=pro'
-    },
-    {
-      id: 'enterprise',
-      name: '企业版',
-      price: '198',
-      currency: '¥',
-      period: '每月',
-      features: [
-        '无限图像',
-        '最高质量',
-        '所有风格+自定义风格',
-        '所有宽高比',
-        'API 访问',
-        '专属支持',
-        '团队协作'
-      ],
-      buttonText: '联系销售',
-      buttonLink: '/contact'
-    }
-  ];
-
-  // This would be determined based on user's language preference
-  // For this example, we'll default to English
-  const [language, setLanguage] = React.useState<'en' | 'zh'>('en');
-  const plans = language === 'en' ? englishPlans : chinesePlans;
   const title = language === 'en' ? 'Choose Your Plan' : '选择您的方案';
   
   return (
@@ -135,7 +78,7 @@ const PricingPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen bg-gradient-to-b from-indigo-900 to-black text-white">
+      <main className="min-h-screen bg-white text-gray-900">
         <header className="container mx-auto py-6 px-4 flex justify-between items-center">
           <div className="flex items-center">
             <Link href="/">
@@ -145,7 +88,8 @@ const PricingPage = () => {
               {language === 'en' ? 'AI Image Generator' : 'AI 图像生成器'}
             </h1>
           </div>
-          <nav className="flex items-center space-x-6">
+          
+          <nav className="flex space-x-6 items-center">
             <Link href="/features" className="hover:text-indigo-300">
               {language === 'en' ? 'Features' : '功能'}
             </Link>
@@ -161,19 +105,22 @@ const PricingPage = () => {
             <select 
               className="bg-transparent border border-indigo-600 rounded p-1"
               value={language}
-              onChange={(e) => setLanguage(e.target.value as 'en' | 'zh')}
+              onChange={(e) => setLanguage(e.target.value as 'en' | 'zh' | 'ja' | 'ko' | 'ar')}
             >
               <option value="en">English</option>
               <option value="zh">中文</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+              <option value="ar">العربية</option>
             </select>
           </nav>
         </header>
 
         <section className="container mx-auto py-16 px-4 text-center">
-          <h1 className="text-5xl font-bold mb-6">
+          <h1 className="text-5xl font-bold mb-6 text-gray-900">
             {language === 'en' ? 'Plans & Pricing' : '方案与定价'}
           </h1>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 max-w-2xl mx-auto text-gray-600">
             {language === 'en' 
               ? 'Choose the perfect plan for your needs. All plans include access to our FLUX.1-Dev AI image generator.' 
               : '选择适合您需求的完美方案。所有方案均包含使用我们的 FLUX.1-Dev AI 图像生成器的权限。'}
@@ -182,12 +129,12 @@ const PricingPage = () => {
 
         <PricingPlans plans={plans} title={title} locale={language} />
 
-        <section className="container mx-auto py-16 px-4 bg-indigo-800 bg-opacity-20 rounded-lg max-w-4xl">
-          <h2 className="text-3xl font-bold mb-10 text-center">
+        <section className="container mx-auto py-16 px-4">
+          <h2 className="text-3xl font-bold mb-10 text-center text-gray-900">
             {language === 'en' ? 'Frequently Asked Questions' : '常见问题'}
           </h2>
           
-          <div className="space-y-6">
+          <div className="space-y-6 max-w-3xl mx-auto">
             <div>
               <h3 className="text-xl font-bold mb-2">
                 {language === 'en' 
@@ -243,10 +190,10 @@ const PricingPage = () => {
         </section>
 
         <section className="container mx-auto py-16 px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="text-3xl font-bold mb-6 text-gray-900">
             {language === 'en' ? 'Still have questions?' : '还有疑问？'}
           </h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
+          <p className="text-xl mb-10 max-w-2xl mx-auto text-gray-600">
             {language === 'en'
               ? 'Contact our support team and we\'ll get back to you as soon as possible.'
               : '联系我们的支持团队，我们将尽快回复您。'}
@@ -259,7 +206,7 @@ const PricingPage = () => {
           </Link>
         </section>
 
-        <footer className="bg-indigo-900 bg-opacity-50 py-10">
+        <footer className="bg-gray-50 py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
               <div>
@@ -290,8 +237,8 @@ const PricingPage = () => {
                 </h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/extend-image" className="hover:text-indigo-300">
-                      {language === 'en' ? 'Extend Image' : '扩展图像'}
+                    <Link href="/expand-image" className="hover:text-indigo-300">
+                      {language === 'en' ? 'Expand Image' : '扩展图像'}
                     </Link>
                   </li>
                 </ul>
@@ -302,32 +249,37 @@ const PricingPage = () => {
                 </h3>
                 <ul className="space-y-2">
                   <li>
-                    <Link href="/privacy" className="hover:text-indigo-300">
-                      {language === 'en' ? 'Privacy Policy' : '隐私政策'}
+                    <Link href="/terms" className="hover:text-indigo-300">
+                      {language === 'en' ? 'Terms of Service' : '服务条款'}
                     </Link>
                   </li>
                   <li>
-                    <Link href="/terms" className="hover:text-indigo-300">
-                      {language === 'en' ? 'Terms of Service' : '服务条款'}
+                    <Link href="/privacy" className="hover:text-indigo-300">
+                      {language === 'en' ? 'Privacy Policy' : '隐私政策'}
                     </Link>
                   </li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-4">
-                  {language === 'en' ? 'Contact' : '联系'}
+                  {language === 'en' ? 'Support' : '支持'}
                 </h3>
-                <p>
-                  {language === 'en' ? 'Email: ' : '邮箱: '}
-                  support@aiimagemaker.com
-                </p>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/contact" className="hover:text-indigo-300">
+                      {language === 'en' ? 'Contact Us' : '联系我们'}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/faq" className="hover:text-indigo-300">
+                      {language === 'en' ? 'FAQ' : '常见问题'}
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
-            <div className="border-t border-indigo-700 pt-6 text-center">
-              <p>
-                © 2025 • {language === 'en' ? 'AI Image Generator' : 'AI 图像生成器'}. 
-                {language === 'en' ? ' All rights reserved.' : ' 保留所有权利。'}
-              </p>
+            <div className="border-t border-indigo-800 pt-8 text-center">
+              <p>© 2025 Raphael AI. {language === 'en' ? 'All rights reserved.' : '保留所有权利。'}</p>
             </div>
           </div>
         </footer>
@@ -336,4 +288,4 @@ const PricingPage = () => {
   );
 };
 
-export default PricingPage; 
+export default PricingPage;

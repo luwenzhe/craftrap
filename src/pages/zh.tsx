@@ -116,40 +116,40 @@ const HomeChinese = () => {
             <div className="p-8">
               <h2 className="text-2xl font-bold mb-6">AI 图像生成器</h2>
               <div className="mb-6">
-                <textarea 
+              <textarea 
                   className="w-full border border-gray-300 rounded p-4 text-gray-800"
                   placeholder="描述提示词... 🇬🇧请用英语输入提示，以获得最佳效果"
-                  rows={4}
-                  value={prompt}
-                  onChange={(e) => setPrompt(e.target.value)}
-                />
-              </div>
-              
+                rows={4}
+                value={prompt}
+                onChange={(e) => setPrompt(e.target.value)}
+              />
+            </div>
+            
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div>
-                  <label className="block text-sm font-medium mb-2">宽高比</label>
-                  <select 
+              <div>
+                <label className="block text-sm font-medium mb-2">宽高比</label>
+                <select 
                     className="w-full border border-gray-300 rounded p-2 text-gray-800"
-                    value={aspect}
-                    onChange={(e) => setAspect(e.target.value)}
-                  >
+                  value={aspect}
+                  onChange={(e) => setAspect(e.target.value)}
+                >
                     <option value="square">正方形比例</option>
                     <option value="portrait">纵向比例</option>
                     <option value="landscape">横向比例</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm font-medium mb-2">风格</label>
-                  <select 
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium mb-2">风格</label>
+                <select 
                     className="w-full border border-gray-300 rounded p-2 text-gray-800"
-                    value={style}
-                    onChange={(e) => setStyle(e.target.value)}
-                  >
-                    <option value="">无风格</option>
-                    <option value="realistic">写实</option>
-                    <option value="anime">动漫</option>
+                  value={style}
+                  onChange={(e) => setStyle(e.target.value)}
+                >
+                  <option value="">无风格</option>
+                  <option value="realistic">写实</option>
+                  <option value="anime">动漫</option>
                     <option value="digital">数字艺术</option>
-                    <option value="oil">油画</option>
+                  <option value="oil">油画</option>
                     <option value="watercolor">水彩</option>
                     <option value="sketch">素描</option>
                   </select>
@@ -182,10 +182,10 @@ const HomeChinese = () => {
                     <option value="studio">工作室光照</option>
                     <option value="neon">霓虹光照</option>
                     <option value="natural">自然光照</option>
-                  </select>
-                </div>
+                </select>
               </div>
-
+            </div>
+            
               <div className="mb-6">
                 <label className="block text-sm font-medium mb-2">负面提示词</label>
                 <textarea 
@@ -198,13 +198,13 @@ const HomeChinese = () => {
               </div>
               
               <div className="flex space-x-4">
-                <button 
+            <button 
                   className={`flex-1 py-3 px-4 rounded-lg font-bold text-lg ${
                     isGenerating
                       ? 'bg-gray-300 cursor-not-allowed'
                       : 'bg-blue-600 hover:bg-blue-700 text-white'
-                  }`}
-                  onClick={handleGenerate}
+              }`}
+              onClick={handleGenerate}
                   disabled={isGenerating}
                 >
                   {isGenerating ? '生成中...' : '生成'}
@@ -220,15 +220,15 @@ const HomeChinese = () => {
                   onClick={handleRandomPrompt}
                 >
                   随机
-                </button>
-              </div>
-
+            </button>
+          </div>
+          
               {generatedImage && (
                 <div className="mt-8 flex justify-center">
-                  <div className="text-center">
-                    <img 
-                      src={generatedImage} 
-                      alt="生成的 AI 图像" 
+              <div className="text-center">
+                <img 
+                  src={generatedImage} 
+                  alt="生成的 AI 图像" 
                       className="rounded-lg shadow-lg max-w-full max-h-[512px]" 
                     />
                     <div className="flex justify-center space-x-4 mt-4">
@@ -240,12 +240,12 @@ const HomeChinese = () => {
                         下载
                       </a>
                       <button className="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded">
-                        分享
-                      </button>
-                    </div>
-                  </div>
+                    分享
+                  </button>
                 </div>
-              )}
+              </div>
+              </div>
+            )}
             </div>
           </div>
         </section>
@@ -332,20 +332,20 @@ const HomeChinese = () => {
                 </p>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-                <div>
+              <div>
                   <h3 className="font-semibold mb-3">关于</h3>
-                  <ul className="space-y-2">
+                <ul className="space-y-2">
                     <li><Link href="/features" className="text-gray-600 hover:text-blue-600">功能</Link></li>
                     <li><Link href="/pricing" className="text-gray-600 hover:text-blue-600">定价</Link></li>
                     <li><Link href="/partners" className="text-gray-600 hover:text-blue-600">合作伙伴</Link></li>
-                  </ul>
-                </div>
-                <div>
+                </ul>
+              </div>
+              <div>
                   <h3 className="font-semibold mb-3">工具</h3>
-                  <ul className="space-y-2">
+                <ul className="space-y-2">
                     <li><Link href="/expand-image" className="text-gray-600 hover:text-blue-600">扩展图像</Link></li>
-                  </ul>
-                </div>
+                </ul>
+              </div>
               </div>
             </div>
             <div className="border-t border-gray-200 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">

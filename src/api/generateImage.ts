@@ -4,13 +4,9 @@ import { ImageGenerationRequest, ImageGenerationResponse, User, canUserGenerateM
 // 这样在Cloudflare静态部署中也能工作
 export async function generateImage(request: ImageGenerationRequest): Promise<ImageGenerationResponse> {
   try {
-    // 在实际实现中，您应该调用外部API服务而不是服务器端函数
-    // 例如使用fetch或axios调用您部署在Cloudflare Workers上的API
-    
-    // 模拟API调用
+    // 模拟API调用延迟
     await new Promise(resolve => setTimeout(resolve, 2000));
     
-    // 在这里可以使用新的参数，例如 request.color, request.lighting, request.composition 等
     console.log('Generating image with params:', {
       prompt: request.prompt,
       negativePrompt: request.negativePrompt,
@@ -21,9 +17,22 @@ export async function generateImage(request: ImageGenerationRequest): Promise<Im
       composition: request.composition
     });
     
-    // 模拟成功响应
+    // 返回示例图像URL（从公共文件夹中的示例图像）
+    const exampleImages = [
+      '/examples/example-1.jpg',
+      '/examples/example-2.jpg',
+      '/examples/example-3.jpg',
+      '/examples/example-4.jpg',
+      '/examples/example-5.jpg',
+      '/examples/example-6.jpg',
+      '/examples/example-7.jpg',
+      '/examples/example-8.jpg',
+    ];
+    
+    const randomImageUrl = exampleImages[Math.floor(Math.random() * exampleImages.length)];
+    
     return {
-      imageUrl: 'https://placehold.co/512x512/png', // 这将是实际生成的图像URL
+      imageUrl: randomImageUrl,
       prompt: request.prompt,
       generatedAt: new Date(),
       success: true
